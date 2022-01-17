@@ -57,12 +57,14 @@ class Utils
 
         return $categorias;
     }
-    /* public static function lPersonas()
-    {
-        $persona = new Persona();
 
-        $personas = $persona->all();
+    public static function showPersonas()
+    {
+        require_once 'models/Persona.php';
+        $persona = new Persona;
+
+        $personas = $persona->getAll();
 
         return $personas;
-    } */
+    }
 }

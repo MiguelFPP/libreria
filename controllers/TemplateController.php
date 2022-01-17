@@ -4,7 +4,11 @@ class TemplateController
 {
     public function ctrTemplate()
     {
-        include_once 'views/template.php';
+        /* if ($_SESSION == 'user') { */
+            include_once 'views/template.php';
+        /* } else {
+            include_once 'views/auth/inicio.php';
+        } */
     }
 
     public function showError()
