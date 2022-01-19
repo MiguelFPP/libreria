@@ -124,13 +124,6 @@ class Persona
         $sql = "insert into persona values (null, {$this->getIdentificacion()}, '{$this->getNombre()}', '{$this->getApellido()}', '{$this->getCorreo()}', '{$this->getRol()}')";
 
         $save = $this->db->query($sql);
-        $persona_id = $this->db->insert_id;
-
-        if ($this->getRol() != 'client') {
-            $contraseniaEn = md5($this->getIdentificacion());
-            $sql2 = "insert into usuario values (null, '{$this->getCorreo()}', '{$contraseniaEn}', 'a', {$persona_id})";
-            $save2 = $this->db->query($sql2);
-        }
 
         $result = false;
         if ($save) {
@@ -142,7 +135,7 @@ class Persona
 
     public function getAll()
     {
-        $sql = "select persona.* from persona where persona.id not in (select usuario.persona from usuario)";
+        $sql = "select persona.* from persona";
         $usuario = $this->db->query($sql);
 
         return $usuario;

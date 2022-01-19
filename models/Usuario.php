@@ -133,4 +133,25 @@ class Usuario
 
         return $this;
     }
+
+    public function save()
+    {
+        $sql = "insert into usuario values (null, '{$this->getUsuario()}', '{$this->getContrasenia()}', 'a', {$this->getPersona()})";
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function getOne()
+    {
+        $sql = "select usuario.estado from usuario where persona={$this->getPersona()}";
+        $usuario = $this->db->query($sql);
+
+        return $usuario->fetch_object();
+    }
 }

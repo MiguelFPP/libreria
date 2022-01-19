@@ -3,7 +3,7 @@
         <div class="col-12 d-flex no-block align-items-center">
             <?php if (isset($edit) && isset($per) && is_object($per)) : ?>
                 <h4 class="page-title">Editar Categoria: <?= $per->nombre ?> <?= $per->apellido ?></h4>
-                <?php $url_action = base_url . 'usuario/save&id=' . $per->id ?>
+                <?php $url_action = base_url . 'usuario/edit&id=' . $per->id ?>
             <?php else : ?>
                 <h4 class="page-title">Crear Nuevo Usuario</h4>
                 <?php $url_action = 'usuario/save' ?>
@@ -47,11 +47,24 @@
                                 <label for="rol">Rol</label>
                                 <select name="rol" class="form-control" id="">
                                     <option value="0">Selccione Rol</option>
-                                    <option value="admin" <?= isset($per) && is_object($per) && $per->rol=='admin' ? 'selected' : '' ?>>Administrador</option>
-                                    <option value="secret" <?= isset($per) && is_object($per) && $per->rol=='secret' ? 'selected' : '' ?>>Secretari@</option>
-                                    <option value="client" <?= isset($per) && is_object($per) && $per->rol=='client' ? 'selected' : '' ?>>Usuario</option>
+                                    <option value="admin" <?= isset($per) && is_object($per) && $per->rol == 'admin' ? 'selected' : '' ?>>Administrador</option>
+                                    <option value="secret" <?= isset($per) && is_object($per) && $per->rol == 'secret' ? 'selected' : '' ?>>Secretari@</option>
+                                    <option value="client" <?= isset($per) && is_object($per) && $per->rol == 'client' ? 'selected' : '' ?>>Usuario</option>
                                 </select>
                             </div>
+
+                            <?php if ($per->rol != 'client') : ?>
+                                <div class="form-group col-6">
+                                    <label for="estado">Estado</label>
+                                    <select name="estado" class="form-control" id="">
+                                        <option value="0">Seleccion Estado</option>
+                                        <option value="a" <?= isset($usu) && is_object($usu) && $usu->estado == 'a' ? 'selected' : '' ?>>Activo</option>
+                                        <option value="i" <?= isset($usu) && is_object($usu) && $usu->estado == 'i' ? 'selected' : '' ?>>Inactivo</option>
+                                    </select>
+                                </div>
+                            <?php endif; ?>
+
+
                         </div>
 
                     </div>
