@@ -124,7 +124,13 @@ class Persona
         $sql = "insert into persona values (null, {$this->getIdentificacion()}, '{$this->getNombre()}', '{$this->getApellido()}', '{$this->getCorreo()}', '{$this->getRol()}')";
 
         $save = $this->db->query($sql);
-        /* $last_id = $this->db->insert_id(); */
+        $persona_id = $this->db->insert_id;
+
+        if ($this->getRol() != 'client') {
+            $contraseniaEn = md5($this->getIdentificacion());
+            $sql2 = "insert into usuario values (null, '{$this->getCorreo()}', '{$contraseniaEn}', 'a', {$persona_id})";
+            $save2 = $this->db->query($sql2);
+        }
 
         $result = false;
         if ($save) {
@@ -140,5 +146,13 @@ class Persona
         $usuario = $this->db->query($sql);
 
         return $usuario;
+    }
+
+    public function getOne()
+    {
+        $sql = "select * from persona where id={$this->getId()}";
+        $persona = $this->db->query($sql);
+
+        return $persona->fetch_object();
     }
 }

@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Persona.php';
+require_once 'models/Usuario.php';
 class UsuarioController extends BaseController
 {
     public function gestion()
@@ -62,9 +63,24 @@ class UsuarioController extends BaseController
                 }
             } else {
                 $_SESSION['errores_datos'] = $errores;
-                var_dump($errores);
-                /* $this->redirect('usuario', 'crear'); */
+                $this->redirect('usuario', 'crear');
             }
+        }
+    }
+
+    public function editar()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $edit = true;
+            $persona = new Persona;
+            $persona->setId($id);
+
+            $per = $persona->getOne();
+
+            include_once 'views/usuario/crear.php';
+        } else {
+            $this->redirect('usuario', 'gestion');
         }
     }
 }
