@@ -41,7 +41,7 @@
 
                     <?php if (isset($_SESSION['edit']) && $_SESSION['edit'] == 'complete') : ?>
                         <div class="alert alert-success">
-                            Categoria Editada Correctamente
+                            Usuario Editado Correctamente
                         </div>
                     <?php elseif (isset($_SESSION['edit']) && $_SESSION['register'] == 'failed') : ?>
                         <div class="alert alert-success">
@@ -51,7 +51,7 @@
 
                     <?php if (isset($_SESSION['delete']) && $_SESSION['delete'] == 'complete') : ?>
                         <div class="alert alert-success">
-                            Categoria Eliminada Correctamente
+                            Usuario Eliminada Correctamente
                         </div>
                     <?php elseif (isset($_SESSION['delete']) && $_SESSION['delete'] == 'failed') : ?>
                         <div class="alert alert-success">

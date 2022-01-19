@@ -155,4 +155,17 @@ class Persona
 
         return $persona->fetch_object();
     }
+
+    public function edit()
+    {
+        $sql = "update persona set identificacion={$this->getIdentificacion()}, nombre='{$this->getNombre()}', apellido='{$this->getApellido()}', correo='{$this->getCorreo()}', rol='{$this->getRol()}' where id={$this->getId()}";
+
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
 }

@@ -52,14 +52,29 @@ class UsuarioController extends BaseController
                 $persona->setCorreo($correo);
                 $persona->setRol($rol);
 
-                $save = $persona->save();
+                if ($_GET['id']) {
+                    $id = $_GET['id'];
 
-                if ($save) {
-                    $_SESSION['register'] = 'complete';
-                    $this->redirect('usuario', 'gestion');
+                    $persona->setId($id);
+                    $edit = $persona->edit();
+
+                    if ($edit) {
+                        $_SESSION['edit'] = 'complete';
+                        $this->redirect('usuario', 'gestion');
+                    } else {
+                        $_SESSION['edit'] = 'failed';
+                        $this->redirect('usuario', 'editar');
+                    }
                 } else {
-                    $_SESSION['register'] = 'failed';
-                    $this->redirect('usuario', 'crear');
+                    $save = $persona->save();
+
+                    if ($save) {
+                        $_SESSION['register'] = 'complete';
+                        $this->redirect('usuario', 'gestion');
+                    } else {
+                        $_SESSION['register'] = 'failed';
+                        $this->redirect('usuario', 'crear');
+                    }
                 }
             } else {
                 $_SESSION['errores_datos'] = $errores;
