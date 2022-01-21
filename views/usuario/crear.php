@@ -53,7 +53,7 @@
                                 </select>
                             </div>
 
-                            <?php if ($per->rol != 'client') : ?>
+                            <?php if (isset($per) && $per->rol != 'client') : ?>
                                 <div class="form-group col-6">
                                     <label for="estado">Estado</label>
                                     <select name="estado" class="form-control" id="">

@@ -58,6 +58,15 @@ class Utils
         return $categorias;
     }
 
+    public static function showAutores()
+    {
+        require_once 'models/Autor.php';
+        $autor = new Autor;
+        $autores = $autor->getAll();
+
+        return $autores;
+    }
+
     public static function showPersonas()
     {
         require_once 'models/Persona.php';

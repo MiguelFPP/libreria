@@ -57,9 +57,8 @@ class UsuarioController extends BaseController
                 $persona_id = $persona->getDb()->insert_id;
 
                 if ($rol != 'client') {
-                    $contraseniaEn = md5($identifiacion);
                     $usuario->setUsuario($correo);
-                    $usuario->setContrasenia($contraseniaEn);
+                    $usuario->setContrasenia($identifiacion);
                     $usuario->setPersona($persona_id);
 
                     $save = $usuario->save();
@@ -155,5 +154,45 @@ class UsuarioController extends BaseController
         } else {
             $this->redirect('usuario', 'crear');
         }
+    }
+
+    public function login()
+    {
+        if (isset($_POST)) {
+            /* identificar usuario */
+            $usuario = new Usuario;
+            $usuario->setUsuario($_POST['usuario']);
+            $usuario->setContrasenia($_POST['contrasenia']);
+            $identity = $usuario->login();
+
+            /* crear session */
+            if ($identity && is_object($identity)) {
+                $_SESSION['identity'] = $identity;
+                if ($identity->rol == 'admin') {
+                    $_SESSION['admin'] = true;
+                } elseif ($identity->rol == 'secret') {
+                    $_SESSION['secret'] = true;
+                }
+                $this->redirect('admin', 'index');
+            } else {
+                $_SESSION['error_login'] = 'Identificacion fallida';
+            }
+        }
+    }
+
+    public function logout()
+    {
+        if (isset($_SESSION['identity'])) {
+            unset($_SESSION['identity']);
+        }
+
+        if (isset($_SESSION['admin'])) {
+            unset($_SESSION['admin']);
+        }
+
+        if (isset($_SESSION['secret'])) {
+            unset($_SESSION['secret']);
+        }
+        $this->redirect('auth', 'login');
     }
 }

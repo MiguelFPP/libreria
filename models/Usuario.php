@@ -59,7 +59,7 @@ class Usuario
      */
     public function getContrasenia()
     {
-        return $this->contrasenia;
+        return password_hash($this->db->real_escape_string($this->contrasenia), PASSWORD_BCRYPT, ['cost' => 4]);
     }
 
     /**
@@ -153,5 +153,26 @@ class Usuario
         $usuario = $this->db->query($sql);
 
         return $usuario->fetch_object();
+    }
+
+    public function login()
+    {
+        $result = false;
+        $usu = $this->usuario;
+        $contrasenia = $this->contrasenia;
+        $sql = "select usuario.*, persona.* from usuario inner join persona on usuario.persona=persona.id where correo='{$usu}'";
+        $login = $this->db->query($sql);
+
+        if ($login && $login->num_rows == 1) {
+            $usuario = $login->fetch_object();
+
+            /* verificar contraseña */
+            $verify = password_verify($contrasenia, $usuario->contrasenia);
+
+            if ($verify) {
+                $result = $usuario;
+            }
+        }
+        return $result;
     }
 }

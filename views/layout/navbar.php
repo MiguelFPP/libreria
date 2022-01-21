@@ -129,7 +129,7 @@
                                         <div class="d-flex no-block align-items-center p-10">
                                             <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
                                             <div class="m-l-10">
-                                                <h5 class="m-b-0">Pavan kumar</h5>
+                                                <h5 class="m-b-0"><?= $_SESSION['identity']->nombre ?></h5>
                                                 <span class="mail-desc">Just see the my admin!</span>
                                             </div>
                                         </div>
@@ -165,7 +165,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                        <a class="dropdown-item" href="usuario/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Cerrar</a>
                         <div class="dropdown-divider"></div>
                         <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
                     </div>

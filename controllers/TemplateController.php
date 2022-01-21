@@ -4,11 +4,16 @@ class TemplateController
 {
     public function ctrTemplate()
     {
-        /* if ($_SESSION == 'user') { */
-            include_once 'views/template.php';
+        /* if (isset($_SESSION['identity']) && $_SESSION['identity'] = $idenity) { */
+        include_once 'views/template.php';
         /* } else {
-            include_once 'views/auth/inicio.php';
+            $this->login();
         } */
+    }
+
+    function login()
+    {
+        include_once 'views/auth/inicio.php';
     }
 
     public function showError()
@@ -35,8 +40,12 @@ class TemplateController
                 $action = $_GET['action'];
                 $controlador->$action();
             } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
-                $action_default = action_default;
-                $controlador->$action_default();
+                $view_default = view_default;
+                if (isset($_SESSION['identity'])) {
+                    $controlador->$view_default();
+                } else {
+                    $this->login();
+                }
             } else {
                 $this->showError();
             }

@@ -37,25 +37,30 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
+
     <div id="main-wrapper">
         <?php
-        include_once 'views/layout/navbar.php';
-        include_once 'views/layout/sidebar.php';
-        ?>
-        <div class="page-wrapper">
-            <?php
-            require_once 'controllers/TemplateController.php';
+        if (isset($_SESSION['identity'])) {
+            include_once 'views/layout/navbar.php';
+            include_once 'views/layout/sidebar.php';
+            echo '<div class="page-wrapper">';
+        }
+        require_once 'controllers/TemplateController.php';
 
-            $template = new TemplateController();
-            $template->main();
+        $template = new TemplateController();
+        $template->main();
 
+        if (isset($_SESSION['identity'])) {
             include_once 'views/layout/footer.php';
-            ?>
-        </div>
+            echo '</div>';
+        }
+        ?>
     </div>
+
     <?php
     include_once 'views/layout/scripts.php';
     ?>
+
 </body>
 
 </html>
