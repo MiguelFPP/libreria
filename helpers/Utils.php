@@ -76,4 +76,14 @@ class Utils
 
         return $personas;
     }
+
+    public static function showLibros()
+    {
+        require_once 'models/Libro.php';
+        $libro = new Libro;
+
+        $libros = $libro->getAll();
+
+        return $libros;
+    }
 }

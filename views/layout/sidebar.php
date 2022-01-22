@@ -11,9 +11,9 @@
                 <!-- libros -->
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-book"></i><span class="hide-menu">Libros </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item"><a href="libro/gestion" class="sidebar-link"><i class="fas fa-book"></i><span class="hide-menu"> Libros </span></a></li>
                         <li class="sidebar-item"><a href="categoria/gestion" class="sidebar-link"><i class="fas fa-bookmark"></i><span class="hide-menu"> Categorias </span></a></li>
                         <li class="sidebar-item"><a href="autor/gestion" class="sidebar-link"><i class="fas fa-user"></i><span class="hide-menu"> Autores </span></a></li>
-                        <li class="sidebar-item"><a href="error-405.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 405 </span></a></li>
                         <li class="sidebar-item"><a href="error-500.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 500 </span></a></li>
                     </ul>
                 </li>

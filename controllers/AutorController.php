@@ -30,16 +30,16 @@ class AutorController extends BaseController
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
 
-                    /* $autor->setId($id);
+                    $autor->setId($id);
                     $edit = $autor->edit();
 
                     if ($edit) {
                         $_SESSION['edit'] = 'complete';
-                        $this->redirect('categoria', 'gestion');
+                        $this->redirect('autor', 'gestion');
                     } else {
                         $_SESSION['edit'] = 'failed';
-                        $this->redirect('categoria', 'editar');
-                    } */
+                        $this->redirect('autor', 'editar');
+                    }
                 } else {
                     $save = $autor->save();
 
@@ -73,5 +73,23 @@ class AutorController extends BaseController
         } else {
             $this->redirect('autor', 'gestion');
         }
+    }
+
+    public function delete()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $autor = new Autor;
+            $autor->setId($id);
+            $delete = $autor->delete();
+
+            if ($delete) {
+                $_SESSION['delete'] = 'complete';
+            } else {
+                $_SESSION['delete'] = 'failed';
+            }
+        }
+        $this->redirect('autor', 'gestion');
     }
 }
