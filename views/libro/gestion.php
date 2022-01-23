@@ -31,7 +31,7 @@
                     <!-- alertas de error o completo -->
                     <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
                         <div class="alert alert-success">
-                            Autor Agregado Correctamente
+                            Libro Agregado Correctamente
                         </div>
                     <?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed') : ?>
                         <div class="alert alert-success">
@@ -41,7 +41,7 @@
 
                     <?php if (isset($_SESSION['edit']) && $_SESSION['edit'] == 'complete') : ?>
                         <div class="alert alert-success">
-                            Autor Editado Correctamente
+                            Libro Editado Correctamente
                         </div>
                     <?php elseif (isset($_SESSION['edit']) && $_SESSION['register'] == 'failed') : ?>
                         <div class="alert alert-success">
@@ -51,7 +51,7 @@
 
                     <?php if (isset($_SESSION['delete']) && $_SESSION['delete'] == 'complete') : ?>
                         <div class="alert alert-success">
-                            Autor Editado Correctamente
+                            Libro Eliminado Correctamente
                         </div>
                     <?php elseif (isset($_SESSION['delete']) && $_SESSION['delete'] == 'failed') : ?>
                         <div class="alert alert-success">

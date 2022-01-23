@@ -72,7 +72,7 @@ class UsuarioController extends BaseController
                     $this->redirect('usuario', 'crear');
                 }
             } else {
-                $_SESSION['errores_datos'] = $errores;
+                $_SESSION['error_datos'] = $errores;
                 $this->redirect('usuario', 'crear');
             }
         }

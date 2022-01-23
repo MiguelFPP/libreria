@@ -176,13 +176,37 @@ class Libro
         return $this;
     }
 
+    public function save()
+    {
+        $sql = "insert into libro values (null, '{$this->getNombre()}', '{$this->getEditorial()}', {$this->getStock()}, curdate(), {$this->getCategoria()}, {$this->getAutor()})";
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
     public function getAll()
     {
-        $sql = "select libro.id, libro.nombre, autor.nombre as autor, categoria.nombre as categoria, libro.editorial, libro.stock from libro
+        $sql = "select libro.id, libro.nombre, autor.id as autor_id, autor.nombre as autor, categoria.id as categoria_id, categoria.nombre as categoria, libro.editorial, libro.stock from libro
         INNER JOIN autor ON libro.autor=autor.id
         INNER JOIN categoria ON libro.categoria=categoria.id;";
         $categorias = $this->db->query($sql);
 
         return $categorias;
+    }
+
+    public function getOne()
+    {
+        $sql = "select libro.id, libro.nombre, autor.id as autor_id, autor.nombre as autor, categoria.nombre as categoria, categoria.id as categoria_id, libro.editorial, libro.stock from libro
+        INNER JOIN autor ON libro.autor=autor.id
+        INNER JOIN categoria ON libro.categoria=categoria.id where libro.id={$this->getId()}";
+
+        $libro = $this->db->query($sql);
+
+        return $libro->fetch_object();
     }
 }

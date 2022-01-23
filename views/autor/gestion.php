@@ -75,12 +75,12 @@
                                     <tr class="">
                                         <td><?= $aut->nombre ?></td>
                                         <td class="text-center">
-                                            <a href="autor/editar&id=<?= $aut->id ?>" class="btn btn-warning btn-sm">
+                                            <a href="autor/editar&id=<?= $aut->id ?>" class="btn btn-warning btn-md">
                                                 <i class="fas fa-edit "></i>
                                             </a>
-                                            <a href="autor/delete&id=<?= $aut->id ?>" class="btn btn-danger btn-sm">
+                                            <!-- <a href="autor/delete&id=<?= $aut->id ?>" class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
