@@ -141,6 +141,14 @@ class Persona
         return $usuario;
     }
 
+    public function getAllClientes()
+    {
+        $sql = "select persona.* from persona where rol='client'";
+        $usuario = $this->db->query($sql);
+
+        return $usuario;
+    }
+
     public function getOne()
     {
         $sql = "select * from persona where id={$this->getId()}";

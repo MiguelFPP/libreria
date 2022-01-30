@@ -81,4 +81,55 @@ class LibroController extends BaseController
             }
         }
     }
+
+    public function edit()
+    {
+        $libro = new Libro;
+        if ($_POST) {
+            $nombre = isset($_POST['nombre']) ? mysqli_real_escape_string($libro->getDb(), $_POST['nombre']) : false;
+            $editorial = isset($_POST['editorial']) ? mysqli_real_escape_string($libro->getDb(), $_POST['editorial']) : false;
+            $stock = isset($_POST['stock']) ? mysqli_real_escape_string($libro->getDb(), $_POST['stock']) : false;
+            $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : false;
+            $autor = isset($_POST['autor']) ? $_POST['autor'] : false;
+
+            $errores = array();
+
+            if (!is_string($nombre) || preg_match("/[0-9]/", $nombre)) {
+                $errores['nombre'] = 'Ingrese un nombre valido';
+            }
+            if (!is_string($editorial) || preg_match("/[0-9]/", $editorial)) {
+                $errores['editorial'] = 'Ingrese un nombre de editorial valido';
+            }
+            if (!is_numeric($stock) || !filter_var($stock, FILTER_VALIDATE_INT)) {
+                $errores['stock'] = 'Ingrese un valor de stock valido';
+            }
+            if ($categoria == 0) {
+                $errores['categoria'] = 'Seleccione una categoria';
+            }
+            if ($autor == 0) {
+                $errores['autor'] = 'Seleccione un autor';
+            }
+
+            if (count($errores) == 0) {
+                $libro->setNombre($nombre);
+                $libro->setEditorial($editorial);
+                $libro->setStock($stock);
+                $libro->setCategoria($categoria);
+                $libro->setAutor($autor);
+
+                $save = $libro->edit();
+
+                if ($save) {
+                    $_SESSION['edit'] = 'complete';
+                    $this->redirect('libro', 'gestion');
+                } else {
+                    $_SESSION['edit'] = 'failed';
+                    $this->redirect('libro', 'crear');
+                }
+            } else {
+                $_SESSION['error_datos'] = $errores;
+                $this->redirect('libro', 'crear');
+            }
+        }
+    }
 }

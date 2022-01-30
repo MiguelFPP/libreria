@@ -62,7 +62,7 @@
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
                         <!-- funcion para mostrar todas la categorias -->
-                        <?php $personas = Utils::showPersonas(); ?>
+                        <?php $personas=Utils::showUsuarioRol() ?>
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>

@@ -47,8 +47,13 @@
                                 <label for="rol">Rol</label>
                                 <select name="rol" class="form-control" id="">
                                     <option value="0">Selccione Rol</option>
-                                    <option value="admin" <?= isset($per) && is_object($per) && $per->rol == 'admin' ? 'selected' : '' ?>>Administrador</option>
-                                    <option value="secret" <?= isset($per) && is_object($per) && $per->rol == 'secret' ? 'selected' : '' ?>>Secretari@</option>
+
+                                    <!-- Permiso Para Gestion de roles con acccions -->
+                                    <?php if (isset($_SESSION['admin'])) : ?>
+                                        <option value="secret" <?= isset($per) && is_object($per) && $per->rol == 'secret' ? 'selected' : '' ?>>Secretari@</option>
+                                        <option value="admin" <?= isset($per) && is_object($per) && $per->rol == 'admin' ? 'selected' : '' ?>>Administrador</option>
+                                    <?php endif; ?>
+
                                     <option value="client" <?= isset($per) && is_object($per) && $per->rol == 'client' ? 'selected' : '' ?>>Usuario</option>
                                 </select>
                             </div>

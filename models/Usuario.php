@@ -155,6 +155,14 @@ class Usuario
         return $usuario->fetch_object();
     }
 
+    public function getUser()
+    {
+        $sql = "select persona.*, usuario.* from usuario inner join persona on usuario.persona=persona.id;";
+        $usuarios = $this->db->query($sql);
+
+        return $usuarios;
+    }
+
     public function login()
     {
         $result = false;

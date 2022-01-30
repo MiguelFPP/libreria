@@ -209,4 +209,17 @@ class Libro
 
         return $libro->fetch_object();
     }
+
+    public function edit()
+    {
+        $sql = "update libro set nombre='{$this->getNombre()}', editorial='{$this->getEditorial()}', stock={$this->getStock()}, fecha=curdate(), categoria={$this->getCategoria()}, autor={$this->getAutor()}";
+        $edit = $this->db->query($sql);
+
+        $result = false;
+        if ($edit) {
+            $result = true;
+        }
+
+        return $result;
+    }
 }

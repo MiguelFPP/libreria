@@ -77,6 +77,27 @@ class Utils
         return $personas;
     }
 
+    public static function showCliente()
+    {
+        require_once 'models/Persona.php';
+        $persona = new Persona;
+
+        $personas = $persona->getAllClientes();
+
+        return $personas;
+    }
+
+    public static function showUsuarioRol()
+    {
+        if (isset($_SESSION['admin'])) {
+            $personas = Utils::showPersonas();
+        } elseif (isset($_SESSION['secret'])) {
+            $personas = Utils::showCliente();
+        }
+
+        return $personas;
+    }
+
     public static function showLibros()
     {
         require_once 'models/Libro.php';
