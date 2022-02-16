@@ -35,6 +35,11 @@ class Utils
             $borrado = true;
         }
 
+        if (isset($_SESSION['term'])) {
+            $_SESSION['term'] = null;
+            $borrado = true;
+        }
+
         return $borrado;
     }
 
@@ -106,5 +111,14 @@ class Utils
         $libros = $libro->getAll();
 
         return $libros;
+    }
+
+    public static function getAllClientLibres()
+    {
+        require_once 'models/Persona.php';
+        $usuario = new Persona;
+        $usuarios = $usuario->getClientesLibres();
+
+        return $usuarios;
     }
 }

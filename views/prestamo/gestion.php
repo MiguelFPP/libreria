@@ -29,13 +29,13 @@
                 <div class="card-body">
                     <a href="prestamo/librosPrestamo" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Iniciar Prestamo</a>
                     <!-- alertas de error o completo -->
-                    <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
+                    <?php if (isset($_SESSION['term']) && $_SESSION['term'] == 'complete') : ?>
                         <div class="alert alert-success">
-                            Usuario Agregado Correctamente
+                            Prestamo Terminado
                         </div>
-                    <?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed') : ?>
+                    <?php elseif (isset($_SESSION['term']) && $_SESSION['term'] == 'failed') : ?>
                         <div class="alert alert-success">
-                            Problemas al agregar
+                            Problemas al terminar el prestamo
                         </div>
                     <?php endif; ?>
 
@@ -62,7 +62,7 @@
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
                         <!-- funcion para mostrar todas la categorias -->
-                        <?php $personas = Utils::showUsuarioRol() ?>
+                        <?php $prestamos = PrestamoController::prestamosNoConcluidos() ?>
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -74,18 +74,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while ($per = $personas->fetch_object()) : ?>
+                                <?php while ($pres = $prestamos->fetch_object()) : ?>
                                     <tr class="">
-                                        <td><?= $per->nombre ?> <?= $per->apellido ?></td>
-                                        <td><?= $per->correo ?></td>
-                                        <td><?= $per->rol ?></td>
-                                        <td>Algo</td>
+                                        <td><?= $pres->identificacion ?></td>
+                                        <td><?= $pres->fechaInicio ?></td>
+                                        <td><?= $pres->fechaFin ?></td>
+                                        <td>
+                                            <?php if ($pres->estado == 'pres') : ?>
+                                                <span class="badge badge-pill badge-primary">Prestado</span>
+                                            <?php elseif ($pres->estado == 'multa') : ?>
+                                                <span class="badge badge-pill badge-danger">Multa</span>
+                                            <?php endif; ?>
+                                        </td>
                                         <td class="text-center">
-                                            <a href="usuario/editar&id=<?= $per->id ?>" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit "></i>
-                                            </a>
-                                            <a href="usuario/delete&id=<?= $per->id ?>" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
+                                            <a href="prestamo/terminar&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
+                                                <i class="fas fa-check "></i>
                                             </a>
                                         </td>
                                     </tr>

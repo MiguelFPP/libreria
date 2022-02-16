@@ -1,6 +1,7 @@
 <?php
 require_once 'models/Libro.php';
 require_once 'models/Persona.php';
+require_once 'models/Prestamo.php';
 class PrestamoController extends BaseController
 {
     public function gestion()
@@ -80,5 +81,34 @@ class PrestamoController extends BaseController
             unset($_SESSION['carrito'][$index]);
         }
         $this->redirect('prestamo', 'carrito');
+    }
+
+    public static function prestamosNoConcluidos()
+    {
+        $prestamo = new Prestamo;
+        $prestamos = $prestamo->prestamosNoConcluidos();
+
+        return $prestamos;
+    }
+
+    public function terminar()
+    {
+        if ($_GET['id']) {
+            $id = $_GET['id'];
+            $prestamo = new Prestamo;
+
+            $prestamo->setId($id);
+            $term = $prestamo->terminar();
+
+            if ($term) {
+                $_SESSION['term'] = 'complete';
+                $this->redirect('prestamo', 'gestion');
+            } else {
+                $_SESSION['term'] = 'failed';
+                $this->redirect('prestamo', 'editar');
+            }
+        } else {
+            $this->redirect('prestamo', 'gestion');
+        }
     }
 }
