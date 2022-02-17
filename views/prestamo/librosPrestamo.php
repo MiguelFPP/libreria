@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="usuario/crear" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
+                    <a href="prestamo/carrito" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
                     <!-- alertas de error o completo -->
                     <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
                         <div class="alert alert-success">

@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-body">
                     <a href="prestamo/librosPrestamo" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Iniciar Prestamo</a>
-                    <!-- alertas de error o completo -->
+                    <!-- alertas de error o completo al terminar -->
                     <?php if (isset($_SESSION['term']) && $_SESSION['term'] == 'complete') : ?>
                         <div class="alert alert-success">
                             Prestamo Terminado

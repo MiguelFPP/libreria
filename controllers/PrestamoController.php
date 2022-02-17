@@ -91,6 +91,7 @@ class PrestamoController extends BaseController
         return $prestamos;
     }
 
+    /* controlador que termina un prestamo */
     public function terminar()
     {
         if ($_GET['id']) {

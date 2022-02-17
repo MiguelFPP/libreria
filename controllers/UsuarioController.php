@@ -195,4 +195,6 @@ class UsuarioController extends BaseController
         }
         $this->redirect('auth', 'login');
     }
+
+    
 }

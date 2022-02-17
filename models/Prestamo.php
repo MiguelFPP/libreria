@@ -143,6 +143,7 @@ class Prestamo
         return $prestamo;
     }
 
+    /* funcion para terminar un prestamos */
     public function terminar()
     {
         $sql = "update prestamo set estado='entr' where id={$this->getId()}";

@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="usuario/crear" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
+                    <a href="prestamo/carrito" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
                     <!-- alertas de error o completo -->
                     <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
                         <div class="alert alert-success">
@@ -62,24 +62,24 @@
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
                         <!-- funcion para mostrar todas la categorias -->
-                        <?php $personas = Utils::showUsuarioRol() ?>
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>Identificacion</th>
                                     <th>Nombre</th>
-                                    <th>Rol</th>
+                                    <th>correo</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while ($per = $personas->fetch_object()) : ?>
+                                <?php $usuarios=Utils::getAllClientLibres() ?>
+                                <?php while ($user = $usuarios->fetch_object()) : ?>
                                     <tr class="">
-                                        <td><?= $per->identificacion ?></td>
-                                        <td><?= $per->nombre ?> <?= $per->apellido ?></td>
-                                        <td><?= $per->rol ?></td>
+                                        <td><?= $user->identificacion ?></td>
+                                        <td><?= $user->nombre ?> <?= $user->apellido ?></td>
+                                        <td><?= $user->correo?></td>
                                         <td class="text-center">
-                                            <a href="prestamo/libroPrestamo&id=<?= $per->id ?>" class="btn btn-warning btn-sm">
+                                            <a href="prestamo/libroPrestamo&id=<?= $user->id ?>" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-inbox "></i>
                                             </a>
                                         </td>
