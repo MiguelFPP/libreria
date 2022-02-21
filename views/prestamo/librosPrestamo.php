@@ -29,33 +29,13 @@
                 <div class="card-body">
                     <a href="prestamo/carrito" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
                     <!-- alertas de error o completo -->
-                    <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
+                    <?php if (isset($_SESSION['carrito_add']) && $_SESSION['carrito_add'] == 'complete') : ?>
                         <div class="alert alert-success">
-                            Usuario Agregado Correctamente
+                            Agregado al Carrito
                         </div>
-                    <?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al agregar
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_SESSION['edit']) && $_SESSION['edit'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Usuario Editado Correctamente
-                        </div>
-                    <?php elseif (isset($_SESSION['edit']) && $_SESSION['register'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al editar
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_SESSION['delete']) && $_SESSION['delete'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Usuario Eliminada Correctamente
-                        </div>
-                    <?php elseif (isset($_SESSION['delete']) && $_SESSION['delete'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al eliminar
+                    <?php elseif (isset($_SESSION['carrito_repit']) && $_SESSION['carrito_repit'] == 'complete') : ?>
+                        <div class="alert alert-warning">
+                            Libro ya existente en el carrito
                         </div>
                     <?php endif; ?>
                     <?php Utils::borrar_alertas() ?>

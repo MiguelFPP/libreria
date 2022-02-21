@@ -7,7 +7,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
-                <?php if (isset($_SESSION['carrito'])) : ?>
+                <?php if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) : ?>
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="prestamo/carrito" aria-expanded="false">
                             <i class="fas fa-shopping-cart"></i>

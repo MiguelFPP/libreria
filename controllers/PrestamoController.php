@@ -20,6 +20,21 @@ class PrestamoController extends BaseController
         include_once "views/prestamo/usuariosPrestamo.php";
     }
 
+    public function previewPrestamo()
+    {
+        $carrito = $_SESSION['carrito'];
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $persona = new Persona;
+            $persona->setId($id);
+            $per = $persona->getOne();
+        } else {
+            $this->redirect('prestamo', 'gestion');
+        }
+        include_once 'views/prestamo/visualizacion.php';
+    }
+
     /* funcion que vrifica si existe un carrito de lo contrario lo crea*/
     public function carrito()
     {
@@ -47,6 +62,7 @@ class PrestamoController extends BaseController
                 if ($elemento['id_libro'] == $libro_id) {
                     /* $_SESSION['carrito'][$indice]['unidades']++; */
                     $counter++;
+                    $_SESSION['carrito_repit'] = 'complete';
                 }
             }
         }
@@ -63,6 +79,7 @@ class PrestamoController extends BaseController
                     "nombre" => $libro->nombre,
                     "libro" => $libro
                 );
+                $_SESSION['carrito_add'] = 'complete';
             }
         }
         $this->redirect('prestamo', 'librosPrestamo');
@@ -89,6 +106,42 @@ class PrestamoController extends BaseController
         $prestamos = $prestamo->prestamosNoConcluidos();
 
         return $prestamos;
+    }
+
+    public function save_prestamo()
+    {
+        if (isset($_SESSION['identity'])) {
+            $persona_pres = $_SESSION['identity']->id;
+            if (isset($_GET['id'])) {
+                $persona_id = $_GET['id'];
+                $fechaInicio = isset($_POST['fechaInicio']) ? $_POST['fechaInicio'] : false;
+                $fechaFin = isset($_POST['fechaFin']) ? $_POST['fechaFin'] : false;
+
+                if ($fechaInicio && $fechaFin) {
+                    $prestamo = new Prestamo;
+                    $prestamo->setFechaInicio($fechaInicio);
+                    $prestamo->setFechaFin($fechaFin);
+                    $prestamo->setPersona($persona_id);
+                    $prestamo->setPersonaPres($persona_pres);
+
+                    $save = $prestamo->save();
+
+                    /* guardar tabla prestamo_libro maestro detalle */
+                    $save_prestamo = $prestamo->save_prestamos_libro();
+
+                    if ($save && $save_prestamo) {
+                        $_SESSION['prestamo'] = 'complete';
+                        unset($_SESSION['carrito']);
+                        $this->redirect('prestamo', 'gestion');
+                    }
+                } else {
+                    $_SESSION['prestamo'] = 'failed';
+                    $this->redirect('prestamo', 'previewPrestamo&id='.$persona_id);
+                }
+            } else {
+                $this->redirect('prestamo', 'usuariosPrestamo');
+            }
+        }
     }
 
     /* controlador que termina un prestamo */

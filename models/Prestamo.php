@@ -6,6 +6,7 @@ class Prestamo
     private $fechaFin;
     private $estado;
     private $persona;
+    private $personaPres;
 
     private $db;
 
@@ -134,6 +135,26 @@ class Prestamo
         return $this;
     }
 
+    /**
+     * Get the value of personaPres
+     */
+    public function getPersonaPres()
+    {
+        return $this->personaPres;
+    }
+
+    /**
+     * Set the value of personaPres
+     *
+     * @return  self
+     */
+    public function setPersonaPres($personaPres)
+    {
+        $this->personaPres = $personaPres;
+
+        return $this;
+    }
+
     public function prestamosNoConcluidos()
     {
         $sql = "SELECT prestamo.*, persona.nombre, persona.apellido, persona.identificacion, persona.correo from prestamo INNER JOIN persona on prestamo.persona=persona.id WHERE prestamo.estado != 'entr'";
@@ -152,6 +173,40 @@ class Prestamo
         $result = false;
 
         if ($edit) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function save()
+    {
+        $sql = "INSERT INTO prestamo VALUES(NULL, '{$this->getFechaInicio()}', '{$this->getFechaFin()}', 'pres', {$this->getPersona()}, {$this->getPersonaPres()})";
+
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function save_prestamos_libro()
+    {
+        $sql = "SELECT LAST_INSERT_ID() AS 'prestamo'";
+        $query = $this->db->query($sql);
+        $prestamo_id = $query->fetch_object()->prestamo;
+
+        foreach ($_SESSION['carrito'] as $elemento) {
+            $libro = $elemento['libro'];
+
+            $insert = "insert into prestamo_libro values(null, null, {$prestamo_id}, {$libro->id})";
+            $save = $this->db->query($insert);
+        }
+
+        $result = false;
+        if ($save) {
             $result = true;
         }
         return $result;

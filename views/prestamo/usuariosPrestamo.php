@@ -28,36 +28,6 @@
             <div class="card">
                 <div class="card-body">
                     <a href="prestamo/carrito" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
-                    <!-- alertas de error o completo -->
-                    <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Usuario Agregado Correctamente
-                        </div>
-                    <?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al agregar
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_SESSION['edit']) && $_SESSION['edit'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Usuario Editado Correctamente
-                        </div>
-                    <?php elseif (isset($_SESSION['edit']) && $_SESSION['register'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al editar
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_SESSION['delete']) && $_SESSION['delete'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Usuario Eliminada Correctamente
-                        </div>
-                    <?php elseif (isset($_SESSION['delete']) && $_SESSION['delete'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al eliminar
-                        </div>
-                    <?php endif; ?>
                     <?php Utils::borrar_alertas() ?>
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
@@ -72,14 +42,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $usuarios=Utils::getAllClientLibres() ?>
+                                <?php $usuarios = Utils::getAllClientLibres() ?>
                                 <?php while ($user = $usuarios->fetch_object()) : ?>
                                     <tr class="">
                                         <td><?= $user->identificacion ?></td>
                                         <td><?= $user->nombre ?> <?= $user->apellido ?></td>
-                                        <td><?= $user->correo?></td>
+                                        <td><?= $user->correo ?></td>
                                         <td class="text-center">
-                                            <a href="prestamo/libroPrestamo&id=<?= $user->id ?>" class="btn btn-warning btn-sm">
+                                            <a href="prestamo/previewPrestamo&id=<?= $user->id ?>" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-inbox "></i>
                                             </a>
                                         </td>

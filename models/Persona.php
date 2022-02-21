@@ -152,7 +152,7 @@ class Persona
     public function getClientesLibres()
     {
         /* consulta pendiente a cambios */
-        $sql = "SELECT * FROM persona LEFT JOIN prestamo ON prestamo.persona=persona.id where persona.id NOT IN(SELECT prestamo.persona FROM prestamo) OR prestamo.estado='entr';";
+        $sql = "SELECT persona.* FROM persona LEFT JOIN prestamo ON prestamo.persona=persona.id where persona.id NOT IN(SELECT prestamo.persona FROM prestamo) OR prestamo.estado='entr';";
         $usuario = $this->db->query($sql);
 
         return $usuario;

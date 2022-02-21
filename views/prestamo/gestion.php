@@ -38,24 +38,9 @@
                             Problemas al terminar el prestamo
                         </div>
                     <?php endif; ?>
-
-                    <?php if (isset($_SESSION['edit']) && $_SESSION['edit'] == 'complete') : ?>
+                    <?php if (isset($_SESSION['prestamo']) && $_SESSION['prestamo'] == 'complete') : ?>
                         <div class="alert alert-success">
-                            Usuario Editado Correctamente
-                        </div>
-                    <?php elseif (isset($_SESSION['edit']) && $_SESSION['register'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al editar
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_SESSION['delete']) && $_SESSION['delete'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Usuario Eliminada Correctamente
-                        </div>
-                    <?php elseif (isset($_SESSION['delete']) && $_SESSION['delete'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al eliminar
+                            Se inicio el prestamo de forma existosa.
                         </div>
                     <?php endif; ?>
                     <?php Utils::borrar_alertas() ?>

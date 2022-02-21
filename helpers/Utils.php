@@ -40,6 +40,21 @@ class Utils
             $borrado = true;
         }
 
+        if (isset($_SESSION['carrito_add'])) {
+            $_SESSION['carrito_add'] = null;
+            $borrado = true;
+        }
+
+        if (isset($_SESSION['carrito_repit'])) {
+            $_SESSION['carrito_repit'] = null;
+            $borrado = true;
+        }
+
+        if (isset($_SESSION['prestamo'])) {
+            $_SESSION['prestamo'] = null;
+            $borrado = true;
+        }
+
         return $borrado;
     }
 
