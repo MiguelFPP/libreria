@@ -20,6 +20,11 @@ class PrestamoController extends BaseController
         include_once "views/prestamo/usuariosPrestamo.php";
     }
 
+    public function usuarios()
+    {
+        include_once "views/prestamo/usuarios.php";
+    }
+
     public function previewPrestamo()
     {
         $carrito = $_SESSION['carrito'];
@@ -124,9 +129,10 @@ class PrestamoController extends BaseController
                     $prestamo->setPersona($persona_id);
                     $prestamo->setPersonaPres($persona_pres);
 
+                    /* guardar  datos basicos del prestamo en la tabla de bd*/
                     $save = $prestamo->save();
 
-                    /* guardar tabla prestamo_libro maestro detalle */
+                    /* guardar array de libros tabla prestamo_libro maestro detalle */
                     $save_prestamo = $prestamo->save_prestamos_libro();
 
                     if ($save && $save_prestamo) {
@@ -136,7 +142,7 @@ class PrestamoController extends BaseController
                     }
                 } else {
                     $_SESSION['prestamo'] = 'failed';
-                    $this->redirect('prestamo', 'previewPrestamo&id='.$persona_id);
+                    $this->redirect('prestamo', 'previewPrestamo&id=' . $persona_id);
                 }
             } else {
                 $this->redirect('prestamo', 'usuariosPrestamo');
@@ -152,7 +158,13 @@ class PrestamoController extends BaseController
             $prestamo = new Prestamo;
 
             $prestamo->setId($id);
-            $term = $prestamo->terminar();
+            $pres = $prestamo->getOne();
+
+            if ($pres->fechaFin < date('Y-m-d')) {
+                $term = $prestamo->terminar('s');
+            } else {
+                $term = $prestamo->terminar('n');
+            }
 
             if ($term) {
                 $_SESSION['term'] = 'complete';
@@ -163,6 +175,28 @@ class PrestamoController extends BaseController
             }
         } else {
             $this->redirect('prestamo', 'gestion');
+        }
+    }
+
+    public static function usuariosConPrestamos()
+    {
+        $prestamo = new Prestamo;
+        $prestamos = $prestamo->usuariosPrestamosGen();
+
+        return $prestamos;
+    }
+
+    public static function prestamosPorUsuario()
+    {
+        $prestamo = new Prestamo;
+        if (isset($_GET['id'])) {
+            $persona_id = $_GET['id'];
+            $prestamo->setPersona($persona_id);
+            $prestamos = $prestamo->prestamosPorUsuario();
+
+            
+            include_once 'views/prestamo/registroUsuarios.php';
+            return $prestamos;
         }
     }
 }

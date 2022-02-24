@@ -27,53 +27,48 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="prestamo/librosPrestamo" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Iniciar Prestamo</a>
-                    <!-- alertas de error o completo al terminar -->
-                    <?php if (isset($_SESSION['term']) && $_SESSION['term'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Prestamo Terminado
-                        </div>
-                    <?php elseif (isset($_SESSION['term']) && $_SESSION['term'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al terminar el prestamo
-                        </div>
-                    <?php endif; ?>
-                    <?php if (isset($_SESSION['prestamo']) && $_SESSION['prestamo'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Se inicio el prestamo de forma existosa.
-                        </div>
-                    <?php endif; ?>
-                    <?php Utils::borrar_alertas() ?>
+                    <a href="prestamo/usuarios" class="btn btn-primary mb-2"><i class="fas fa-arrow-circle-left"></i> Volver</a>
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
                         <!-- funcion para mostrar todas la categorias -->
-                        <?php $prestamos = PrestamoController::prestamosNoConcluidos() ?>
+                        <?php $prestamos = PrestamoController::prestamosPorUsuario() ?>
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Identificacion</th>
                                     <th>Fecha Inicio</th>
                                     <th>Fecha Fin</th>
                                     <th>Estado</th>
+                                    <th>Multa</th>
+                                    <th>Prestado Por</th>
+                                    <th>Cant Libros</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php while ($pres = $prestamos->fetch_object()) : ?>
                                     <tr class="">
-                                        <td><?= $pres->identificacion ?></td>
                                         <td><?= $pres->fechaInicio ?></td>
                                         <td><?= $pres->fechaFin ?></td>
                                         <td>
-                                            <?php if ($pres->fechaFin < date('Y-m-d')) : ?>
-                                                <span class="badge badge-pill badge-danger">Multa</span>
-                                            <?php else : ?>
+                                            <?php if ($pres->estado == 'entr') : ?>
+                                                <span class="badge badge-pill badge-success">Entregado</span>
+                                            <?php elseif ($pres->estado == 'pres') : ?>
                                                 <span class="badge badge-pill badge-primary">Prestado</span>
                                             <?php endif; ?>
                                         </td>
+                                        <td>
+                                            <?php if ($pres->multa == 'n') : ?>
+                                                <span class="badge badge-pill badge-success">NO</span>
+                                            <?php elseif ($pres->multa == 's') : ?>
+                                                <span class="badge badge-pill badge-danger">SI</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= $pres->persona_pres ?></td>
+                                        <td><?= $pres->cantLib ?></td>
+
                                         <td class="text-center">
-                                            <a href="prestamo/terminar&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
-                                                <i class="fas fa-check "></i>
+                                            <a href="prestamo/resgistroPrestamo&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
+                                                <i class="fas fa-eye "></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -81,10 +76,12 @@
                                 </tr>
                             </tbody>
                             <tfoot>
-                                <th>Identificacion</th>
                                 <th>Fecha Inicio</th>
                                 <th>Fecha Fin</th>
                                 <th>Estado</th>
+                                <th>Multa</th>
+                                <th>Prestado Por</th>
+                                <th>Cant Libros</th>
                                 <th>Accion</th>
                             </tfoot>
                         </table>

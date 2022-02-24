@@ -1,7 +1,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Gestion de Prestamos</h4>
+            <h4 class="page-title">Usuarios Con Prestamos</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -27,34 +27,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="prestamo/librosPrestamo" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Iniciar Prestamo</a>
-                    <!-- alertas de error o completo al terminar -->
-                    <?php if (isset($_SESSION['term']) && $_SESSION['term'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Prestamo Terminado
-                        </div>
-                    <?php elseif (isset($_SESSION['term']) && $_SESSION['term'] == 'failed') : ?>
-                        <div class="alert alert-success">
-                            Problemas al terminar el prestamo
-                        </div>
-                    <?php endif; ?>
-                    <?php if (isset($_SESSION['prestamo']) && $_SESSION['prestamo'] == 'complete') : ?>
-                        <div class="alert alert-success">
-                            Se inicio el prestamo de forma existosa.
-                        </div>
-                    <?php endif; ?>
-                    <?php Utils::borrar_alertas() ?>
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
                         <!-- funcion para mostrar todas la categorias -->
-                        <?php $prestamos = PrestamoController::prestamosNoConcluidos() ?>
+                        <?php $prestamos = PrestamoController::usuariosConPrestamos() ?>
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>Identificacion</th>
-                                    <th>Fecha Inicio</th>
-                                    <th>Fecha Fin</th>
-                                    <th>Estado</th>
+                                    <th>Nombres</th>
+                                    <th>Cant Prestamos</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -62,18 +44,11 @@
                                 <?php while ($pres = $prestamos->fetch_object()) : ?>
                                     <tr class="">
                                         <td><?= $pres->identificacion ?></td>
-                                        <td><?= $pres->fechaInicio ?></td>
-                                        <td><?= $pres->fechaFin ?></td>
-                                        <td>
-                                            <?php if ($pres->fechaFin < date('Y-m-d')) : ?>
-                                                <span class="badge badge-pill badge-danger">Multa</span>
-                                            <?php else : ?>
-                                                <span class="badge badge-pill badge-primary">Prestado</span>
-                                            <?php endif; ?>
-                                        </td>
+                                        <td><?= $pres->nombre ?> <?= $pres->apellido ?></td>
+                                        <td><?= $pres->cantPres ?></td>
                                         <td class="text-center">
-                                            <a href="prestamo/terminar&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
-                                                <i class="fas fa-check "></i>
+                                            <a href="prestamo/prestamosPorUsuario&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
+                                                <i class="fas fa-eye "></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -82,9 +57,8 @@
                             </tbody>
                             <tfoot>
                                 <th>Identificacion</th>
-                                <th>Fecha Inicio</th>
-                                <th>Fecha Fin</th>
-                                <th>Estado</th>
+                                <th>Nombres</th>
+                                <th>Cant Prestamos</th>
                                 <th>Accion</th>
                             </tfoot>
                         </table>
