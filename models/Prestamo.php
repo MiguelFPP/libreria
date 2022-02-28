@@ -4,6 +4,7 @@ class Prestamo
     private $id;
     private $fechaInicio;
     private $fechaFin;
+    private $fechaEntrega;
     private $estado;
     private $persona;
     private $personaPres;
@@ -71,6 +72,26 @@ class Prestamo
     public function setFechaFin($fechaFin)
     {
         $this->fechaFin = $fechaFin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fechaEntrega
+     */
+    public function getFechaEntrega()
+    {
+        return $this->fechaEntrega;
+    }
+
+    /**
+     * Set the value of fechaEntrega
+     *
+     * @return  self
+     */
+    public function setFechaEntrega($fechaEntrega)
+    {
+        $this->fechaEntrega = $fechaEntrega;
 
         return $this;
     }
@@ -167,7 +188,7 @@ class Prestamo
     /* funcion para terminar un prestamos */
     public function terminar($multa)
     {
-        $sql = "UPDATE prestamo SET estado='entr', multa='$multa' WHERE id={$this->getId()}";
+        $sql = "UPDATE prestamo SET fechaEntrega=CURDATE(), estado='entr', multa='$multa' WHERE id={$this->getId()}";
 
         $edit = $this->db->query($sql);
         $result = false;
@@ -181,7 +202,7 @@ class Prestamo
     /* inicia un nuevo prestamo en la bd */
     public function save()
     {
-        $sql = "INSERT INTO prestamo VALUES(NULL, '{$this->getFechaInicio()}', '{$this->getFechaFin()}', 'pres', 'null', {$this->getPersona()}, {$this->getPersonaPres()})";
+        $sql = "INSERT INTO prestamo VALUES(NULL, '{$this->getFechaInicio()}', '{$this->getFechaFin()}', 'null', 'pres', 'null', {$this->getPersona()}, {$this->getPersonaPres()})";
 
         $save = $this->db->query($sql);
 
@@ -237,10 +258,42 @@ class Prestamo
 
     public function prestamosPorUsuario()
     {
-        $sql = "SELECT prestamo.*, COUNT(prestamo_libro.prestamo) AS cantLib FROM persona INNER JOIN prestamo ON persona.id=prestamo.persona INNER JOIN prestamo_libro on prestamo.id=prestamo_libro.prestamo WHERE persona.id={$this->getPersona()} GROUP BY prestamo_libro.prestamo";
+        $sql = "SELECT prestamo.*, COUNT(prestamo_libro.prestamo) AS cantLib, persona.nombre as presNombre, persona.apellido as presApellido FROM persona 
+        INNER JOIN prestamo ON persona.id=prestamo.persona OR persona.id=prestamo.persona_pres
+        INNER JOIN prestamo_libro on prestamo.id=prestamo_libro.prestamo
+        WHERE persona.id={$this->getPersona()} GROUP BY prestamo_libro.prestamo";
 
         $prestamo = $this->db->query($sql);
 
         return $prestamo;
+    }
+
+    /* consulta que trae la informacion de prestamos dependiendo el id del prestamo */
+    public function rPrestamo()
+    {
+        $sql = "SELECT prestamo.*, persona.identificacion as perIdentificacion,persona.nombre as perNombre, persona.apellido as perApellido, persona.correo as perCorreo, libro.nombre as libNombre, libro.editorial as libEditorial, autor.nombre as autor, categoria.nombre as categoria from prestamo
+        INNER JOIN persona ON prestamo.persona=persona.id
+        INNER JOIN prestamo_libro ON prestamo.id=prestamo_libro.prestamo
+        INNER JOIN libro ON prestamo_libro.libro=libro.id
+        INNER JOIN autor ON libro.autor=autor.id
+        INNER JOIN categoria ON libro.categoria=categoria.id
+        WHERE prestamo.id={$this->getId()}";
+
+        $prestamoUsu = $this->db->query($sql);
+
+        return $prestamoUsu;
+    }
+
+    /* consulta que trae la informacion del admin o secret que realizo el prestamo 
+    dependiendo el id del prestamo */
+    public function infoPerPrestamo()
+    {
+        $sql = "SELECT persona.nombre, persona.apellido, persona.correo from prestamo
+        INNER JOIN persona ON prestamo.persona_pres=persona.id
+        where prestamo.id={$this->getId()}";
+
+        $perPrestamo = $this->db->query($sql);
+
+        return $perPrestamo->fetch_object();
     }
 }

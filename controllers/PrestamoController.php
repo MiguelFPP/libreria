@@ -186,17 +186,39 @@ class PrestamoController extends BaseController
         return $prestamos;
     }
 
-    public static function prestamosPorUsuario()
+    /* trae todos los prestamos que ha hecho el usuario */
+    public function prestamosPorUsuario()
     {
-        $prestamo = new Prestamo;
-        if (isset($_GET['id'])) {
+        if ($_GET['id']) {
+            $prestamo = new Prestamo;
             $persona_id = $_GET['id'];
             $prestamo->setPersona($persona_id);
             $prestamos = $prestamo->prestamosPorUsuario();
 
-            
+
             include_once 'views/prestamo/registroUsuarios.php';
             return $prestamos;
+        } else {
+            $this->redirect('prestamo', 'usuarios');
+        }
+    }
+
+    /* funcion del controlado que virifica si viene un id por url y trae informacion 
+    de prestamos dependiendo el id*/
+    public function infoPrestamos()
+    {
+        $prestamo = new Prestamo;
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $prestamo->setId($id);
+            /* informacion general del prestamo ya existente */
+            $pres = $prestamo->rPrestamo();
+            /* informacion del admin o secret que realizo el prestamo */
+            $perPrestamos = $prestamo->infoPerPrestamo();
+            include_once "views/prestamo/registroPrestamo.php";
+        } else {
+            $this->redirect('prestamo', 'usuarios');
         }
     }
 }

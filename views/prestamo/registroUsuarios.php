@@ -31,7 +31,7 @@
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
                         <!-- funcion para mostrar todas la categorias -->
-                        <?php $prestamos = PrestamoController::prestamosPorUsuario() ?>
+                        
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -63,11 +63,11 @@
                                                 <span class="badge badge-pill badge-danger">SI</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td><?= $pres->persona_pres ?></td>
+                                        <td><?= $pres->presNombre ?> <?= $pres->presApellido ?></td>
                                         <td><?= $pres->cantLib ?></td>
 
                                         <td class="text-center">
-                                            <a href="prestamo/resgistroPrestamo&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
+                                            <a href="prestamo/infoPrestamos&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
                                                 <i class="fas fa-eye "></i>
                                             </a>
                                         </td>
