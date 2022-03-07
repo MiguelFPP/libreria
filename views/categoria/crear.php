@@ -3,10 +3,10 @@
         <div class="col-12 d-flex no-block align-items-center">
             <?php if (isset($edit) && isset($cat) && is_object($cat)) : ?>
                 <h4 class="page-title">Editar Categoria: <?= $cat->nombre ?></h4>
-                <?php $url_action = base_url . 'categoria/save&id=' . $cat->id ?>
+                <?php $url_action = base_url . 'Categoria/save&id=' . $cat->id ?>
             <?php else : ?>
                 <h4 class="page-title">Crear Nueva Categoria</h4>
-                <?php $url_action = 'categoria/save' ?>
+                <?php $url_action = 'Categoria/save' ?>
             <?php endif; ?>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">

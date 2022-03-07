@@ -26,7 +26,7 @@ class LibroController extends BaseController
 
             include_once 'views/libro/crear.php';
         } else {
-            $this->redirect('libro', 'gestion');
+            $this->redirect('Libro', 'gestion');
         }
     }
     public function save()
@@ -68,16 +68,16 @@ class LibroController extends BaseController
 
                 if ($save) {
                     $_SESSION['register'] = 'complete';
-                    $this->redirect('libro', 'gestion');
+                    $this->redirect('Libro', 'gestion');
                 } else {
                     $_SESSION['register'] = 'failed';
-                    $this->redirect('libro', 'crear');
+                    $this->redirect('Libro', 'crear');
                 }
             } else {
                 $_SESSION['error_datos'] = $errores;
                 /* var_dump($_SESSION['error_datos']);
                 die(); */
-                $this->redirect('libro', 'crear');
+                $this->redirect('Libro', 'crear');
             }
         }
     }
@@ -121,14 +121,14 @@ class LibroController extends BaseController
 
                 if ($save) {
                     $_SESSION['edit'] = 'complete';
-                    $this->redirect('libro', 'gestion');
+                    $this->redirect('Libro', 'gestion');
                 } else {
                     $_SESSION['edit'] = 'failed';
-                    $this->redirect('libro', 'crear');
+                    $this->redirect('Libro', 'crear');
                 }
             } else {
                 $_SESSION['error_datos'] = $errores;
-                $this->redirect('libro', 'crear');
+                $this->redirect('Libro', 'crear');
             }
         }
     }

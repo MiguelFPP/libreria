@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="categoria/crear" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Agregar</a>
+                    <a href="Categoria/crear" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Agregar</a>
                     <!-- alertas de error o completo -->
                     <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
                         <div class="alert alert-success">
@@ -75,10 +75,10 @@
                                     <tr class="">
                                         <td><?= $cat->nombre ?></td>
                                         <td class="text-center">
-                                            <a href="categoria/editar&id=<?= $cat->id ?>" class="btn btn-warning btn-sm">
+                                            <a href="Categoria/editar&id=<?= $cat->id ?>" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-edit "></i>
                                             </a>
-                                            <a href="categoria/delete&id=<?= $cat->id ?>" class="btn btn-danger btn-sm">
+                                            <a href="Categoria/delete&id=<?= $cat->id ?>" class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>

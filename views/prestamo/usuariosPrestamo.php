@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="prestamo/carrito" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
+                    <a href="Prestamo/carrito" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
                     <?php Utils::borrar_alertas() ?>
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
@@ -49,7 +49,7 @@
                                         <td><?= $user->nombre ?> <?= $user->apellido ?></td>
                                         <td><?= $user->correo ?></td>
                                         <td class="text-center">
-                                            <a href="prestamo/previewPrestamo&id=<?= $user->id ?>" class="btn btn-warning btn-sm">
+                                            <a href="Prestamo/previewPrestamo&id=<?= $user->id ?>" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-inbox "></i>
                                             </a>
                                         </td>

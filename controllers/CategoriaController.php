@@ -35,25 +35,25 @@ class CategoriaController extends BaseController
 
                     if ($edit) {
                         $_SESSION['edit'] = 'complete';
-                        $this->redirect('categoria', 'gestion');
+                        $this->redirect('Categoria', 'gestion');
                     } else {
                         $_SESSION['edit'] = 'failed';
-                        $this->redirect('categoria', 'editar');
+                        $this->redirect('Categoria', 'editar');
                     }
                 } else {
                     $save = $categoria->save();
 
                     if ($save) {
                         $_SESSION['register'] = 'complete';
-                        $this->redirect('categoria', 'gestion');
+                        $this->redirect('Categoria', 'gestion');
                     } else {
                         $_SESSION['retgister'] = 'failed';
-                        $this->redirect('categoria', 'editar');
+                        $this->redirect('Categoria', 'editar');
                     }
                 }
             } else {
                 $_SESSION['error_datos'] = $errores;
-                $this->redirect('categoria', 'crear');
+                $this->redirect('Categoria', 'crear');
             }
         }
     }
@@ -71,7 +71,7 @@ class CategoriaController extends BaseController
 
             include_once 'views/categoria/crear.php';
         } else {
-            $this->redirect('categoria', 'gestion');
+            $this->redirect('Categoria', 'gestion');
         }
     }
 
@@ -91,6 +91,6 @@ class CategoriaController extends BaseController
                 $_SESSION['delete'] = 'failed';
             }
         }
-        $this->redirect('categoria', 'gestion');
+        $this->redirect('Categoria', 'gestion');
     }
 }

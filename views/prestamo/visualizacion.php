@@ -39,7 +39,7 @@
                             <?php endif; ?>
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="prestamo/save_prestamo&id=<?= $per->id ?>" method="post">
+                                    <form action="Prestamo/save_prestamo&id=<?= $per->id ?>" method="post">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="fechaInicio">Fecha Inicio</label>

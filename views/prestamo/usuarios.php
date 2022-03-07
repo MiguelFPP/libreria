@@ -47,7 +47,7 @@
                                         <td><?= $pres->nombre ?> <?= $pres->apellido ?></td>
                                         <td><?= $pres->cantPres ?></td>
                                         <td class="text-center">
-                                            <a href="prestamo/prestamosPorUsuario&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
+                                            <a href="Prestamo/prestamosPorUsuario&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
                                                 <i class="fas fa-eye "></i>
                                             </a>
                                         </td>

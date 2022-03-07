@@ -35,25 +35,25 @@ class AutorController extends BaseController
 
                     if ($edit) {
                         $_SESSION['edit'] = 'complete';
-                        $this->redirect('autor', 'gestion');
+                        $this->redirect('Autor', 'gestion');
                     } else {
                         $_SESSION['edit'] = 'failed';
-                        $this->redirect('autor', 'editar');
+                        $this->redirect('Autor', 'editar');
                     }
                 } else {
                     $save = $autor->save();
 
                     if ($save) {
                         $_SESSION['register'] = 'complete';
-                        $this->redirect('autor', 'gestion');
+                        $this->redirect('Autor', 'gestion');
                     } else {
                         $_SESSION['retgister'] = 'failed';
-                        $this->redirect('autor', 'crear');
+                        $this->redirect('Autor', 'crear');
                     }
                 }
             } else {
                 $_SESSION['error_datos'] = $errores;
-                $this->redirect('autor', 'crear');
+                $this->redirect('Autor', 'crear');
             }
         }
     }
@@ -71,7 +71,7 @@ class AutorController extends BaseController
 
             include_once 'views/autor/crear.php';
         } else {
-            $this->redirect('autor', 'gestion');
+            $this->redirect('Autor', 'gestion');
         }
     }
 
@@ -90,6 +90,6 @@ class AutorController extends BaseController
                 $_SESSION['delete'] = 'failed';
             }
         }
-        $this->redirect('autor', 'gestion');
+        $this->redirect('Autor', 'gestion');
     }
 }

@@ -45,11 +45,8 @@
             include_once 'views/layout/sidebar.php';
             echo '<div class="page-wrapper">';
         }
-        require_once 'controllers/TemplateController.php';
-
         $template = new TemplateController();
         $template->main();
-
         if (isset($_SESSION['identity'])) {
             include_once 'views/layout/footer.php';
             echo '</div>';

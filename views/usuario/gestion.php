@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="usuario/crear" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Agregar</a>
+                    <a href="Usuario/crear" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Agregar</a>
                     <!-- alertas de error o completo -->
                     <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
                         <div class="alert alert-success">
@@ -79,10 +79,10 @@
                                         <td><?= $per->correo ?></td>
                                         <td><?= $per->rol ?></td>
                                         <td class="text-center">
-                                            <a href="usuario/editar&id=<?= $per->id ?>" class="btn btn-warning btn-sm">
+                                            <a href="Usuario/editar&id=<?= $per->id ?>" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-edit "></i>
                                             </a>
-                                            <a href="usuario/delete&id=<?= $per->id ?>" class="btn btn-danger btn-sm">
+                                            <a href="Usuario/delete&id=<?= $per->id ?>" class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>

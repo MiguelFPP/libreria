@@ -3,10 +3,10 @@
         <div class="col-12 d-flex no-block align-items-center">
             <?php if (isset($edit) && isset($aut) && is_object($aut)) : ?>
                 <h4 class="page-title">Editar Autor: <?= $aut->nombre ?></h4>
-                <?php $url_action = base_url . 'autor/save&id=' . $aut->id ?>
+                <?php $url_action = base_url . 'Autor/save&id=' . $aut->id ?>
             <?php else : ?>
                 <h4 class="page-title">Crear Nuevo Autor</h4>
-                <?php $url_action = 'autor/save' ?>
+                <?php $url_action = 'Autor/save' ?>
             <?php endif; ?>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">

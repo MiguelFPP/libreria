@@ -3,10 +3,10 @@
         <div class="col-12 d-flex no-block align-items-center">
             <?php if (isset($edit) && isset($per) && is_object($per)) : ?>
                 <h4 class="page-title">Editar Categoria: <?= $per->nombre ?> <?= $per->apellido ?></h4>
-                <?php $url_action = base_url . 'usuario/edit&id=' . $per->id ?>
+                <?php $url_action = base_url . 'Usuario/edit&id=' . $per->id ?>
             <?php else : ?>
                 <h4 class="page-title">Crear Nuevo Usuario</h4>
-                <?php $url_action = 'usuario/save' ?>
+                <?php $url_action = 'Usuario/save' ?>
             <?php endif; ?>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">

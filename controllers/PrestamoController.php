@@ -35,7 +35,7 @@ class PrestamoController extends BaseController
             $persona->setId($id);
             $per = $persona->getOne();
         } else {
-            $this->redirect('prestamo', 'gestion');
+            $this->redirect('Prestamo', 'gestion');
         }
         include_once 'views/prestamo/visualizacion.php';
     }
@@ -57,7 +57,7 @@ class PrestamoController extends BaseController
         if (isset($_GET['id'])) {
             $libro_id = $_GET['id'];
         } else {
-            $this->redirect('admin', 'index');
+            $this->redirect('Pdmin', 'index');
         }
 
         /* verifica si el id ya esta en el array para evitar mostrar el libro repetido */
@@ -87,13 +87,13 @@ class PrestamoController extends BaseController
                 $_SESSION['carrito_add'] = 'complete';
             }
         }
-        $this->redirect('prestamo', 'librosPrestamo');
+        $this->redirect('Prestamo', 'librosPrestamo');
     }
 
     public function limpiarCarrito()
     {
         unset($_SESSION['carrito']);
-        $this->redirect('prestamo', 'gestion');
+        $this->redirect('Prestamo', 'gestion');
     }
 
     public function quitarLibro()
@@ -102,7 +102,7 @@ class PrestamoController extends BaseController
             $index = $_GET['index'];
             unset($_SESSION['carrito'][$index]);
         }
-        $this->redirect('prestamo', 'carrito');
+        $this->redirect('Prestamo', 'carrito');
     }
 
     public static function prestamosNoConcluidos()
@@ -138,14 +138,14 @@ class PrestamoController extends BaseController
                     if ($save && $save_prestamo) {
                         $_SESSION['prestamo'] = 'complete';
                         unset($_SESSION['carrito']);
-                        $this->redirect('prestamo', 'gestion');
+                        $this->redirect('Prestamo', 'gestion');
                     }
                 } else {
                     $_SESSION['prestamo'] = 'failed';
-                    $this->redirect('prestamo', 'previewPrestamo&id=' . $persona_id);
+                    $this->redirect('Prestamo', 'previewPrestamo&id=' . $persona_id);
                 }
             } else {
-                $this->redirect('prestamo', 'usuariosPrestamo');
+                $this->redirect('Prestamo', 'usuariosPrestamo');
             }
         }
     }
@@ -168,13 +168,13 @@ class PrestamoController extends BaseController
 
             if ($term) {
                 $_SESSION['term'] = 'complete';
-                $this->redirect('prestamo', 'gestion');
+                $this->redirect('Prestamo', 'gestion');
             } else {
                 $_SESSION['term'] = 'failed';
-                $this->redirect('prestamo', 'editar');
+                $this->redirect('Prestamo', 'editar');
             }
         } else {
-            $this->redirect('prestamo', 'gestion');
+            $this->redirect('Prestamo', 'gestion');
         }
     }
 
@@ -199,7 +199,7 @@ class PrestamoController extends BaseController
             include_once 'views/prestamo/registroUsuarios.php';
             return $prestamos;
         } else {
-            $this->redirect('prestamo', 'usuarios');
+            $this->redirect('Prestamo', 'usuarios');
         }
     }
 
@@ -218,7 +218,7 @@ class PrestamoController extends BaseController
             $perPrestamos = $prestamo->infoPerPrestamo();
             include_once "views/prestamo/registroPrestamo.php";
         } else {
-            $this->redirect('prestamo', 'usuarios');
+            $this->redirect('Prestamo', 'usuarios');
         }
     }
 }

@@ -32,8 +32,8 @@
                 <h3><b>Prestamo</b> <span class="pull-right">#</span></h3>
                 <hr>
                 <div class="col-md-3">
-                <a href="prestamo/usuarios" class="btn btn-primary mb-2"><i class="fas fa-arrow-circle-left"></i> Volver</a>
-                <a href="prestamo/usuarios" class="btn btn-warning mb-2"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="Prestamo/usuarios" class="btn btn-primary mb-2"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+                <a href="Prestamo/pdfInfoPrestamo&id=<?= $presInfo->id ?>" class="btn btn-warning mb-2"><i class="fas fa-file-pdf"></i> PDF</a>
                 </div>
                 <div class="row">
                     <div class="col-md-12">

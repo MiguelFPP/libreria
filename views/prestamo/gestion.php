@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="prestamo/librosPrestamo" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Iniciar Prestamo</a>
+                    <a href="Prestamo/librosPrestamo" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Iniciar Prestamo</a>
                     <!-- alertas de error o completo al terminar -->
                     <?php if (isset($_SESSION['term']) && $_SESSION['term'] == 'complete') : ?>
                         <div class="alert alert-success">
@@ -72,7 +72,7 @@
                                             <?php endif; ?>
                                         </td>
                                         <td class="text-center">
-                                            <a href="prestamo/terminar&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
+                                            <a href="Prestamo/terminar&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
                                                 <i class="fas fa-check "></i>
                                             </a>
                                         </td>

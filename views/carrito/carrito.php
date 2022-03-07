@@ -4,9 +4,9 @@
             <?php if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) >= 1) : ?>
                 <div class="card-body">
                     <h4 class="card-title">Carrito Prestamo de Libros</h4>
-                    <a class="btn btn-danger" href="prestamo/limpiarCarrito"><i class="fas fa-trash"></i> Limpiar</a>
-                    <a class="btn btn-primary" href="prestamo/librosPrestamo"><i class="fas fa-book"></i> Seleccionar Libros</a>
-                    <a class="btn btn-success" href="prestamo/usuariosPrestamo"><i class="fas fa-users"></i> Sleccionar Usuario</a>
+                    <a class="btn btn-danger" href="Prestamo/limpiarCarrito"><i class="fas fa-trash"></i> Limpiar</a>
+                    <a class="btn btn-primary" href="Prestamo/librosPrestamo"><i class="fas fa-book"></i> Seleccionar Libros</a>
+                    <a class="btn btn-success" href="Prestamo/usuariosPrestamo"><i class="fas fa-users"></i> Sleccionar Usuario</a>
                 </div>
                 <div class="comment-widgets scrollable">
                     <div class="card">
@@ -33,7 +33,7 @@
                                                 <td><?= $libro->categoria ?></td>
                                                 <td><?= $libro->editorial ?></td>
                                                 <td class="text-center">
-                                                    <a href="prestamo/quitarLibro&index=<?= $indice ?>" class="btn btn-danger btn-sm">
+                                                    <a href="Prestamo/quitarLibro&index=<?= $indice ?>" class="btn btn-danger btn-sm">
                                                         <i class="fas fa-window-close "></i>
                                                     </a>
                                                 </td>

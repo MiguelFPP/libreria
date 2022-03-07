@@ -202,7 +202,7 @@ class Prestamo
     /* inicia un nuevo prestamo en la bd */
     public function save()
     {
-        $sql = "INSERT INTO prestamo VALUES(NULL, '{$this->getFechaInicio()}', '{$this->getFechaFin()}', 'null', 'pres', 'null', {$this->getPersona()}, {$this->getPersonaPres()})";
+        $sql = "INSERT INTO prestamo VALUES(NULL, '{$this->getFechaInicio()}', '{$this->getFechaFin()}', 'null', 'pres', 'n', {$this->getPersona()}, {$this->getPersonaPres()})";
 
         $save = $this->db->query($sql);
 

@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="autor/crear" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Agregar</a>
+                    <a href="Autor/crear" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Agregar</a>
                     <!-- alertas de error o completo -->
                     <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
                         <div class="alert alert-success">
@@ -75,7 +75,7 @@
                                     <tr class="">
                                         <td><?= $aut->nombre ?></td>
                                         <td class="text-center">
-                                            <a href="autor/editar&id=<?= $aut->id ?>" class="btn btn-warning btn-md">
+                                            <a href="Autor/editar&id=<?= $aut->id ?>" class="btn btn-warning btn-md">
                                                 <i class="fas fa-edit "></i>
                                             </a>
                                             <!-- <a href="autor/delete&id=<?= $aut->id ?>" class="btn btn-danger btn-sm">

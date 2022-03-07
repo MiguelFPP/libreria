@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="libro/crear" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Agregar</a>
+                    <a href="Libro/crear" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Agregar</a>
                     <!-- alertas de error o completo -->
                     <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete') : ?>
                         <div class="alert alert-success">
@@ -83,10 +83,10 @@
                                         <td><?= $lib->editorial ?></td>
                                         <td><?= $lib->stock ?></td>
                                         <td class="text-center">
-                                            <a href="libro/editar&id=<?= $lib->id ?>" class="btn btn-warning btn-sm">
+                                            <a href="Libro/editar&id=<?= $lib->id ?>" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-edit "></i>
                                             </a>
-                                            <a href="libro/delete&id=<?= $lib->id ?>" class="btn btn-danger btn-sm">
+                                            <a href="Libro/delete&id=<?= $lib->id ?>" class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>

@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="prestamo/usuarios" class="btn btn-primary mb-2"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+                    <a href="Prestamo/usuarios" class="btn btn-primary mb-2"><i class="fas fa-arrow-circle-left"></i> Volver</a>
                     <!-- fin seccion de alertas -->
                     <div class="table-responsive">
                         <!-- funcion para mostrar todas la categorias -->
@@ -67,7 +67,7 @@
                                         <td><?= $pres->cantLib ?></td>
 
                                         <td class="text-center">
-                                            <a href="prestamo/infoPrestamos&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
+                                            <a href="Prestamo/infoPrestamos&id=<?= $pres->id ?>" class="btn btn-success btn-sm">
                                                 <i class="fas fa-eye "></i>
                                             </a>
                                         </td>

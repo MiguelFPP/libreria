@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="prestamo/carrito" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
+                    <a href="Prestamo/carrito" class="btn btn-primary mb-2"><i class="fas fa-eye"></i> Ver Libros</a>
                     <!-- alertas de error o completo -->
                     <?php if (isset($_SESSION['carrito_add']) && $_SESSION['carrito_add'] == 'complete') : ?>
                         <div class="alert alert-success">
@@ -68,7 +68,7 @@
 
                                         </td>
                                         <td class="text-center">
-                                            <a href="prestamo/add&id=<?= $lib->id ?>" class="btn btn-success btn-sm">
+                                            <a href="Prestamo/add&id=<?= $lib->id ?>" class="btn btn-success btn-sm">
                                                 <i class="fas fa-check "></i>
                                             </a>
                                         </td>

@@ -66,14 +66,14 @@ class UsuarioController extends BaseController
 
                 if ($save) {
                     $_SESSION['register'] = 'complete';
-                    $this->redirect('usuario', 'gestion');
+                    $this->redirect('Usuario', 'gestion');
                 } else {
                     $_SESSION['register'] = 'failed';
-                    $this->redirect('usuario', 'crear');
+                    $this->redirect('Usuario', 'crear');
                 }
             } else {
                 $_SESSION['error_datos'] = $errores;
-                $this->redirect('usuario', 'crear');
+                $this->redirect('Usuario', 'crear');
             }
         }
     }
@@ -97,7 +97,7 @@ class UsuarioController extends BaseController
 
             include_once 'views/usuario/crear.php';
         } else {
-            $this->redirect('usuario', 'gestion');
+            $this->redirect('Usuario', 'gestion');
         }
     }
 
@@ -146,13 +146,13 @@ class UsuarioController extends BaseController
 
             if ($edit) {
                 $_SESSION['edit'] = 'complete';
-                $this->redirect('usuario', 'gestion');
+                $this->redirect('Usuario', 'gestion');
             } else {
                 $_SESSION['edit'] = 'failed';
-                $this->redirect('usuario', 'editar');
+                $this->redirect('Usuario', 'editar');
             }
         } else {
-            $this->redirect('usuario', 'crear');
+            $this->redirect('Usuario', 'crear');
         }
     }
 
@@ -173,9 +173,10 @@ class UsuarioController extends BaseController
                 } elseif ($identity->rol == 'secret') {
                     $_SESSION['secret'] = true;
                 }
-                $this->redirect('admin', 'index');
+                header('location: ' . base_url . 'Admin/index');
             } else {
                 $_SESSION['error_login'] = 'Identificacion fallida';
+                $this->redirect('Template', 'login');
             }
         }
     }
@@ -193,8 +194,6 @@ class UsuarioController extends BaseController
         if (isset($_SESSION['secret'])) {
             unset($_SESSION['secret']);
         }
-        $this->redirect('auth', 'login');
+        $this->redirect('Auth', 'login');
     }
-
-    
 }

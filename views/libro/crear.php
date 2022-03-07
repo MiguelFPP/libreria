@@ -3,10 +3,10 @@
         <div class="col-12 d-flex no-block align-items-center">
             <?php if (isset($edit) && isset($lib) && is_object($lib)) : ?>
                 <h4 class="page-title">Editar Libro: <?= $lib->nombre ?></h4>
-                <?php $url_action = base_url . 'libro/edit&id=' . $lib->id ?>
+                <?php $url_action = base_url . 'Libro/edit&id=' . $lib->id ?>
             <?php else : ?>
                 <h4 class="page-title">Crear Nuevo Libro</h4>
-                <?php $url_action = 'libro/save' ?>
+                <?php $url_action = 'Libro/save' ?>
             <?php endif; ?>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
